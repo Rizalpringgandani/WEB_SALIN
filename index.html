@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scene Prompt Copier - Fast AI Video Workflow</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">🎬</span>
+        <div>
+          <h1 class="brand-title">Scene Prompt Copier</h1>
+          <p class="brand-subtitle">Alat bantu salin prompt multitasking (Gemini ➡️ Flow)</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="counter-badge" id="stats-counter" title="Adegan tersalin / total adegan">
+          <span class="counter-icon">✓</span>
+          <span id="counter-text">0 / 0 Selesai</span>
+        </div>
+        <button id="btn-popup-mode" class="btn-action" title="Buka jendela kecil mandiri (Pop-out Window)">
+          🪟 Jendela Mini
+        </button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- Input Section (Matching user sketch: "tempel teks prompt") -->
+      <section class="card input-card">
+        <div class="card-header">
+          <h2 class="card-title">tempel teks prompt</h2>
+          <div class="header-tools">
+            <label class="btn-tool file-upload-label" title="Unggah file teks">
+              📁 Buka File .txt
+              <input type="file" id="file-input" accept=".txt,.text,.md" style="display:none;" />
+            </label>
+            <button id="btn-clear-input" class="btn-tool text-danger" title="Kosongkan kotak input">Bersihkan</button>
+          </div>
+        </div>
+
+        <textarea 
+          id="raw-prompt-input" 
+          class="prompt-textarea" 
+          placeholder="Tempel seluruh teks prompt dari Gemini di sini (misal: scene 010, scene 011, dst)..."
+        ></textarea>
+
+        <div class="input-footer">
+          <div class="parser-options">
+            <label class="checkbox-container">
+              <input type="checkbox" id="opt-strip-header" checked />
+              <span class="checkmark"></span>
+              Buang label 'Scene X' saat disalin (hanya isi prompt)
+            </label>
+          </div>
+          <button id="btn-parse" class="btn-primary">
+            <span>⚡ Muat & Pecah Scene</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Scene List Section -->
+      <section class="card list-card">
+        <div class="card-header list-header">
+          <div class="list-title-group">
+            <h2 class="card-title">Daftar Adegan</h2>
+            <span class="status-summary" id="list-summary">0 adegan siap</span>
+          </div>
+          <div class="list-tools">
+            <button id="btn-reset-colors" class="btn-tool" title="Kembalikan semua warna tombol jadi hijau">
+              🔄 Reset Warna (Hijau Semua)
+            </button>
+            <button id="btn-clear-all" class="btn-tool text-danger" title="Hapus semua daftar">
+              🗑️ Hapus Daftar
+            </button>
+          </div>
+        </div>
+
+        <div id="scenes-container" class="scenes-list">
+          <!-- Empty State -->
+          <div class="empty-state" id="empty-state">
+            <div class="empty-icon">📋</div>
+            <p class="empty-title">Belum ada adegan yang dimuat</p>
+            <p class="empty-desc">Tempel teks adegan dari Gemini pada kotak di atas, lalu klik tombol <b>Muat & Pecah Scene</b>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <span>Siap dideploy di <b>Vercel</b> • Data tersimpan otomatis di browser (localStorage)</span>
+    </footer>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast">Prompt berhasil disalin!</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

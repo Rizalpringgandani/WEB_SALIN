@@ -1,0 +1,10 @@
+{
+  "name": "scene-prompt-copier",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Scene Prompt Copier Web App - Fast Multitasking Workflow for AI Video Generation",
+  "keywords": ["gemini", "google-flow", "ai-video", "prompt-manager"],
+  "scripts": {
+    "start": "serve ."
+  }
+}
